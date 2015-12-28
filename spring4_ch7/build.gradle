@@ -1,16 +1,29 @@
-version '1.0-SNAPSHOT'
-
-apply plugin: 'groovy'
 apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
 
-sourceCompatibility = 1.5
+group = 'com.apress.isf'
+version = '1.0'
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+	compile 'org.codehaus.groovy:groovy-all:2.3.6'
+	compile 'org.springframework:spring-context:4.0.6.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-logging:1.1.4.RELEASE'
+	testCompile 'junit:junit:4.11'
+	testCompile 'org.springframework:spring-test:4.0.6.RELEASE'
+}
 
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+test {
+	testLogging {
+		events 'started', 'passed'
+	}
+
+	onOutput { descriptor, event ->
+		logger.lifecycle(event.message)
+	}
 }
