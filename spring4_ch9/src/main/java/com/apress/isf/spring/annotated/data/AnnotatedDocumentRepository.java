@@ -32,7 +32,7 @@ public class AnnotatedDocumentRepository implements DocumentDAO{
 
 	@Override
 	public List<Document> getAll() {
-		List<Document> result = new ArrayList<>();
+		List<Document> result = new ArrayList<Document>();
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
